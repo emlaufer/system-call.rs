@@ -76,3 +76,8 @@ pub mod platform;
           target_arch = "x86_64"))]
 #[path="platform/macos-x86_64/mod.rs"]
 pub mod platform;
+
+#[cfg(all(target_os = "macos",
+          target_arch = "aarch64"))]
+#[path="platform/macos-aarch64/mod.rs"]
+pub mod platform;
