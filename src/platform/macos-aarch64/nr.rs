@@ -365,4 +365,6 @@ pub const READLINKAT: usize = 473;
 pub const SYMLINKAT: usize = 474;
 pub const MKDIRAT: usize = 475;
 
+pub const THREAD_SELFUSAGE: usize = 482;
+
 pub const MAXSYSCALL: usize = 476;
