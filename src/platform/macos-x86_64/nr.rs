@@ -361,4 +361,17 @@ pub const PID_RESUME: usize = 434;
 pub const PID_HIBERNATE: usize = 435;
 pub const PID_SHUTDOWN_SOCKETS: usize = 436;
 pub const SHARED_REGION_MAP_AND_SLIDE_NP: usize = 438;
-pub const MAXSYSCALL: usize = 439;
+
+// Added manually, should really regen this file with a script...
+pub const OPENAT: usize = 463;
+pub const RENAMEAT: usize = 465;
+pub const FSTATAT64: usize = 470;
+pub const LINKAT: usize = 471;
+pub const UNLINKAT: usize = 472;
+pub const READLINKAT: usize = 473;
+pub const SYMLINKAT: usize = 474;
+pub const MKDIRAT: usize = 475;
+
+pub const THREAD_SELFUSAGE: usize = 482;
+
+pub const MAXSYSCALL: usize = 476;
