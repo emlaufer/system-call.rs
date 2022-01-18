@@ -9,11 +9,14 @@
 
 //! System call numbers for x86-64 MacOS.
 
+// This number must be added to all syscall numbers
+pub const SYSCALL_MAGIC: usize = 0x2000000;
+
 pub const SYSCALL: usize = 0;
 pub const EXIT: usize = 1;
 pub const FORK: usize = 2;
 pub const READ: usize = 3;
-pub const WRITE: usize = 0x2000004;
+pub const WRITE: usize = 4;
 pub const OPEN: usize = 5;
 pub const CLOSE: usize = 6;
 pub const WAIT4: usize = 7;
