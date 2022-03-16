@@ -83,16 +83,17 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
 }
 
 #[inline(always)]
-pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize) -> usize {
+pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize) -> i64 {
     /*asm!("syscall"
     : "+{rax}"(n)
     : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4)
     : "rcx", "r11", "memory"
     : "volatile");*/
     n = n + nr::SYSCALL_MAGIC;
+    let ret: i64 = 0;
     println!("calling syscall: {}", n);
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
@@ -100,8 +101,8 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    println!("got: {}", n);
-    n
+    println!("got: {}", ret);
+    ret
 }
 
 #[inline(always)]
