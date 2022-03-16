@@ -90,6 +90,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     : "rcx", "r11", "memory"
     : "volatile");*/
     n = n + nr::SYSCALL_MAGIC;
+    println!("calling syscall: {}", n);
     asm!("syscall",
          inlateout("rax") n,
          in("rdi") a1,
@@ -99,6 +100,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
+    println!("got: {}", n);
     n
 }
 
