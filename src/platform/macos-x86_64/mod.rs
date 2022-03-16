@@ -9,7 +9,7 @@
 
 //! This library was built for x86-64 MacOS.
 
-use core::arch::asm;
+use std::arch::asm;
 
 pub mod nr;
 
