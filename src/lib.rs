@@ -12,71 +12,59 @@
 // Reference http://man7.org/linux/man-pages/man2/syscall.2.html
 
 #![deny(warnings)]
-#![no_std]
-
-#[cfg(test)]
-extern crate std;
+//#![no_std]
+//
+//#[cfg(test)]
+//extern crate std;
 
 pub use platform::*;
 
 pub mod macros;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "aarch64"))]
-#[path="platform/linux-aarch64/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "aarch64"))]
+#[path = "platform/linux-aarch64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "arm"))]
-#[path="platform/linux-armeabi/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "arm"))]
+#[path = "platform/linux-armeabi/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "mips"))]
-#[path="platform/linux-mips/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "mips"))]
+#[path = "platform/linux-mips/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "mips64"))]
-#[path="platform/linux-mips64/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "mips64"))]
+#[path = "platform/linux-mips64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "powerpc"))]
-#[path="platform/linux-powerpc/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "powerpc"))]
+#[path = "platform/linux-powerpc/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "powerpc64"))]
-#[path="platform/linux-powerpc64/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "powerpc64"))]
+#[path = "platform/linux-powerpc64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "sparc64"))]
-#[path="platform/linux-sparc64/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "sparc64"))]
+#[path = "platform/linux-sparc64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "x86"))]
-#[path="platform/linux-x86/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "x86"))]
+#[path = "platform/linux-x86/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "linux",
-          target_arch = "x86_64"))]
-#[path="platform/linux-x86_64/mod.rs"]
+#[cfg(all(target_os = "linux", target_arch = "x86_64"))]
+#[path = "platform/linux-x86_64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "freebsd",
-          target_arch = "x86_64"))]
-#[path="platform/freebsd-x86_64/mod.rs"]
+#[cfg(all(target_os = "freebsd", target_arch = "x86_64"))]
+#[path = "platform/freebsd-x86_64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "macos",
-          target_arch = "x86_64"))]
-#[path="platform/macos-x86_64/mod.rs"]
+#[cfg(all(target_os = "macos", target_arch = "x86_64"))]
+#[path = "platform/macos-x86_64/mod.rs"]
 pub mod platform;
 
-#[cfg(all(target_os = "macos",
-          target_arch = "aarch64"))]
-#[path="platform/macos-aarch64/mod.rs"]
+#[cfg(all(target_os = "macos", target_arch = "aarch64"))]
+#[path = "platform/macos-aarch64/mod.rs"]
 pub mod platform;
