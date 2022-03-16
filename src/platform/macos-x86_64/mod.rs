@@ -90,10 +90,10 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     : "rcx", "r11", "memory"
     : "volatile");*/
     n = n + nr::SYSCALL_MAGIC;
-    let ret: i64 = 0;
+    let mut ret: i64 = 0;
     println!("calling syscall: {}", n);
     asm!("syscall",
-         inlateout("rax") ret,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
