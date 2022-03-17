@@ -13,7 +13,7 @@ use core::arch::asm;
 
 pub mod nr;
 
-pub type SyscallReturn = (usize, bool);
+pub type SyscallReturn = (isize, bool);
 
 #[inline(always)]
 pub unsafe fn syscall0(mut n: usize) -> SyscallReturn {
