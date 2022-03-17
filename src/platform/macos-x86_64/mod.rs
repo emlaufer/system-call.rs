@@ -24,12 +24,10 @@ pub unsafe fn syscall0(mut n: usize) -> usize {
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
-         "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n ,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
-         err = inlateout(reg) err,
          options(nostack));
     // on error, set errno like linux does
     if err != 0 {
@@ -48,12 +46,11 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
@@ -72,12 +69,12 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          in("rsi") a2,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
@@ -96,13 +93,13 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
@@ -121,6 +118,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          in("rsi") a2,
@@ -128,7 +126,6 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
          in("r10") a4,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
@@ -154,6 +151,7 @@ pub unsafe fn syscall5(
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          in("rsi") a2,
@@ -162,7 +160,6 @@ pub unsafe fn syscall5(
          in("r8") a5,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
@@ -189,6 +186,7 @@ pub unsafe fn syscall6(
     let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}",
+         err = inlateout(reg) err,
          inlateout("rax") n,
          in("rdi") a1,
          in("rsi") a2,
@@ -198,7 +196,6 @@ pub unsafe fn syscall6(
          in("r9") a6,
          lateout("rcx") _,
          lateout("r11") _,
-         err = inlateout(reg) err,
          options(nostack));
     if err != 0 {
         n = ((n as isize) * -1) as usize;
