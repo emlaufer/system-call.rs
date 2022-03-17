@@ -43,6 +43,8 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> SyscallReturn {
     : "{rdi}"(a1)
     : "rcx", "r11", "memory" : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -62,6 +64,8 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> SyscallReturn {
     : "rcx", "r11", "memory"
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -82,6 +86,8 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> Syscall
     : "rcx", "r11", "memory"
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -103,6 +109,8 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     : "rcx", "r11", "memory"
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -132,6 +140,8 @@ pub unsafe fn syscall5(
     : "rcx", "r11", "memory"
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -163,6 +173,8 @@ pub unsafe fn syscall6(
     : "rcx", "r11", "memory"
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
+    let mut ret;
+    let mut err;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
