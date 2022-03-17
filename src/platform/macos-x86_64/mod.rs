@@ -24,13 +24,13 @@ pub unsafe fn syscall0(mut n: usize) -> SyscallReturn {
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
          "sbb {}, {}", // set err to -1 if carry flag set
          inlateout("rax") n => ret,
          lateout("rcx") _,
          lateout("r11") _,
-         out("reg") err,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -44,13 +44,14 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> SyscallReturn {
     : "rcx", "r11", "memory" : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
          in("rdi") a1,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -65,7 +66,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> SyscallReturn {
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -73,6 +74,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> SyscallReturn {
          in("rsi") a2,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -87,7 +89,7 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> Syscall
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -96,6 +98,7 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> Syscall
          in("rdx") a3,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -110,7 +113,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -120,6 +123,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
          in("r10") a4,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -141,7 +145,7 @@ pub unsafe fn syscall5(
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -152,6 +156,7 @@ pub unsafe fn syscall5(
          in("r8") a5,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
@@ -174,7 +179,7 @@ pub unsafe fn syscall6(
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err;
+    let mut err: i32;
     asm!("syscall",
 		 "sbb {}, {}",
          inlateout("rax") n => ret,
@@ -186,6 +191,7 @@ pub unsafe fn syscall6(
          in("r9") a6,
          lateout("rcx") _,
          lateout("r11") _,
+         lateout(reg) err,
          options(nostack));
     let err_bool = if err == 0 { false } else { true };
     (ret, err_bool)
