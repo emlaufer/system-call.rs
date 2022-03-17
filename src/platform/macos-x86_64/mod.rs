@@ -115,7 +115,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     let mut ret;
     let mut err: i32;
     asm!("syscall",
-		 "sbb {0}, {0}",
+		 "sbb {err}, {err}",
          err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
