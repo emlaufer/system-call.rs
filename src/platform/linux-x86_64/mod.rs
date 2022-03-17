@@ -13,85 +13,87 @@ use core::arch::asm;
 
 pub mod nr;
 
+pub type SyscallReturn = isize;
+
 #[inline(always)]
-pub unsafe fn syscall0(mut n: usize) -> usize {
+pub unsafe fn syscall0(n: usize) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         :
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    :
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
+pub unsafe fn syscall1(n: usize, a1: usize) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1)
-         : "rcx", "r11", "memory" : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1)
+    : "rcx", "r11", "memory" : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
+pub unsafe fn syscall2(n: usize, a1: usize, a2: usize) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1) "{rsi}"(a2)
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1) "{rsi}"(a2)
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
+pub unsafe fn syscall3(n: usize, a1: usize, a2: usize, a3: usize) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3)
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3)
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall4(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize)
-                       -> usize {
+pub unsafe fn syscall4(n: usize, a1: usize, a2: usize, a3: usize, a4: usize) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4)
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4)
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
@@ -99,24 +101,26 @@ pub unsafe fn syscall4(mut n: usize,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall5(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize)
-                       -> usize {
+pub unsafe fn syscall5(
+    n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
@@ -125,25 +129,27 @@ pub unsafe fn syscall5(mut n: usize,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }
 
 #[inline(always)]
-pub unsafe fn syscall6(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize,
-                       a6: usize)
-                       -> usize {
+pub unsafe fn syscall6(
+    n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+    a6: usize,
+) -> SyscallReturn {
     /*asm!("syscall"
-         : "+{rax}"(n)
-         : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)"{r9}"(a6)
-         : "rcx", "r11", "memory"
-         : "volatile");*/
+    : "+{rax}"(n)
+    : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)"{r9}"(a6)
+    : "rcx", "r11", "memory"
+    : "volatile");*/
+    let mut ret;
     asm!("syscall",
-         inlateout("rax") n,
+         inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
          in("rdx") a3,
@@ -153,5 +159,5 @@ pub unsafe fn syscall6(mut n: usize,
          lateout("rcx") _,
          lateout("r11") _,
          options(nostack));
-    n
+    ret
 }

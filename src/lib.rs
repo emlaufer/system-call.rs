@@ -12,10 +12,10 @@
 // Reference http://man7.org/linux/man-pages/man2/syscall.2.html
 
 #![deny(warnings)]
-//#![no_std]
-//
-//#[cfg(test)]
-//extern crate std;
+#![no_std]
+
+#[cfg(test)]
+extern crate std;
 
 pub use platform::*;
 
