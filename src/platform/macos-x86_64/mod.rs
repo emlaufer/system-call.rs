@@ -24,7 +24,7 @@ pub unsafe fn syscall0(mut n: usize) -> SyscallReturn {
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
          "sbb {err}, {err}", // set err to -1 if carry flag set
          err = inlateout(reg) err,
@@ -44,7 +44,7 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> SyscallReturn {
     : "rcx", "r11", "memory" : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
@@ -66,7 +66,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> SyscallReturn {
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
@@ -89,7 +89,7 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> Syscall
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
@@ -113,7 +113,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
@@ -145,7 +145,7 @@ pub unsafe fn syscall5(
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
@@ -179,7 +179,7 @@ pub unsafe fn syscall6(
     : "volatile");*/
     let n = n + nr::SYSCALL_MAGIC;
     let mut ret;
-    let mut err: i32;
+    let mut err: i32 = 0;
     asm!("syscall",
 		 "sbb {err}, {err}",
          err = inlateout(reg) err,
