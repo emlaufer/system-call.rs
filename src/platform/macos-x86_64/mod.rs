@@ -27,7 +27,7 @@ pub unsafe fn syscall0(mut n: usize) -> SyscallReturn {
     let mut err: i32;
     asm!("syscall",
          "sbb {err}, {err}", // set err to -1 if carry flag set
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          lateout("rcx") _,
          lateout("r11") _,
@@ -47,7 +47,7 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> SyscallReturn {
     let mut err: i32;
     asm!("syscall",
 		 "sbb {err}, {err}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          lateout("rcx") _,
@@ -69,7 +69,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> SyscallReturn {
     let mut err: i32;
     asm!("syscall",
 		 "sbb {err}, {err}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
@@ -92,7 +92,7 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> Syscall
     let mut err: i32;
     asm!("syscall",
 		 "sbb {err}, {err}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
@@ -116,7 +116,7 @@ pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize)
     let mut err: i32;
     asm!("syscall",
 		 "sbb {0}, {0}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
@@ -148,7 +148,7 @@ pub unsafe fn syscall5(
     let mut err: i32;
     asm!("syscall",
 		 "sbb {err}, {err}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
@@ -182,7 +182,7 @@ pub unsafe fn syscall6(
     let mut err: i32;
     asm!("syscall",
 		 "sbb {err}, {err}",
-         inlateout(reg) err,
+         err = inlateout(reg) err,
          inlateout("rax") n => ret,
          in("rdi") a1,
          in("rsi") a2,
