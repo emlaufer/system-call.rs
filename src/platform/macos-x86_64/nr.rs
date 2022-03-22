@@ -368,6 +368,7 @@ pub const SHARED_REGION_MAP_AND_SLIDE_NP: usize = 438;
 // Added manually, should really regen this file with a script...
 pub const OPENAT: usize = 463;
 pub const RENAMEAT: usize = 465;
+pub const FSTATAT: usize = 469;
 pub const FSTATAT64: usize = 470;
 pub const LINKAT: usize = 471;
 pub const UNLINKAT: usize = 472;
