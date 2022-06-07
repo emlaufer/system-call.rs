@@ -378,4 +378,7 @@ pub const MKDIRAT: usize = 475;
 
 pub const THREAD_SELFUSAGE: usize = 482;
 
-pub const MAXSYSCALL: usize = 476;
+pub const PREADV: usize = 540;
+pub const PWRITEV: usize = 541;
+
+pub const MAXSYSCALL: usize = 546;
